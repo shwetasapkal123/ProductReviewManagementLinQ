@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -109,7 +110,7 @@ namespace ProductReviewManagement
             }
             return res;
         }
-        //UC5-Retrieve Only Product Id And Reviews
+        //UC5 And UC7-Retrieve Only Product Id And Reviews
         public static string RetrieveOnlyProductIdAndReviews(List<ProductReview> products)
         {
             string result = null;
@@ -130,6 +131,36 @@ namespace ProductReviewManagement
             var res = (from product in products orderby product.Rating descending select product).Skip(5).ToList();
             IterateOverList(res);
             return res.Count;
+        }
+        // UC8-->Using DataTable
+        public static void CreateDataTable(List<ProductReview> products)
+        {
+            AddProductReviewToList(products);
+            DataTable dt = new DataTable();
+            dt.Columns.Add("productId");
+            dt.Columns.Add("userId");
+            dt.Columns.Add("rating");
+            dt.Columns.Add("review");
+            dt.Columns.Add("isLike", typeof(bool));
+
+            foreach (var data in products)
+            {
+                dt.Rows.Add(data.ProductId, data.UserId, data.Rating, data.Review, data.IsLike);
+            }
+            IterateTable(dt);
+            //int c = ReturnsOnlyIsLikeFieldAsTrue(dt);
+            //return c;
+        }
+        /// <summary>
+        /// Iterate Thorugh Table
+        /// </summary>
+        /// <param name="table"></param>
+        public static void IterateTable(DataTable table)
+        {
+            foreach (DataRow p in table.Rows)
+            {
+                Console.WriteLine("{0} | {1} | {2} | {3} | {4} ", p["productId"], p["userId"], p["rating"], p["review"], p["isLike"]);
+            }
         }
     }
 }
