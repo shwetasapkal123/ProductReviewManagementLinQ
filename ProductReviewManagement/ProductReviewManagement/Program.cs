@@ -15,7 +15,7 @@ namespace ProductReviewManagement
             Console.WriteLine("WEL-COME to product review management program");
             try
             {
-               Console.WriteLine("1: Add Product Review To List \n2: Show All Product Review \n3:Retrieve top 3 records rating is high\n4: Exit");
+               Console.WriteLine("1: Add Product Review To List \n2: Show All Product Review \n3:Retrieve top 3 records rating is high\n4:Retrieve records based on productId and ratings greater than 3\n5: Exit");
                Console.Write("Choose the option from above : ");
                int option=Convert.ToInt32(Console.ReadLine());
                 List<ProductReview> products = new List<ProductReview>();
@@ -37,6 +37,10 @@ namespace ProductReviewManagement
                         ProductReviewManager.RetrieveTopThreeRating(products);
                         break ;
                    case 4:
+                        //Calling method to retrieve all record whos rating greater than3 and id is 1 or 4
+                        ProductReviewManager.RetrieveRecordsBasedOnRatingAndProductId(products);
+                        break;
+                   case 5:
                          flag = false;
                           break;
                    default:

@@ -24,9 +24,7 @@ namespace ProductReviewManagementTest
                 int actual =ProductReviewManager.AddProductReviewToList(products).Count;
                 Assert.AreEqual(expected, actual);
             }
-            /// <summary>
-            /// UC2--->Retrieve Top Three Records Whose Rating is High
-            /// </summary>
+            /// UC2--Retrieve Top Three Records Whose Rating is High           
             [TestMethod]
             public void TestMethodForRetrieveTopThreeRecord()
             {
@@ -35,5 +33,14 @@ namespace ProductReviewManagementTest
                 var actual = ProductReviewManager.RetrieveTopThreeRating(products);
                 Assert.AreEqual(expected, actual);
             }
+        //UC3-retrieve all record whos rating greater than3 and id is 1 or 4 ,9
+        [TestMethod]
+        [TestCategory("Retrieving data whos id 1,4,9")]
+        public void TestMethodForRetrieveRecordsBasedOnRatingAndProductId()
+        {
+            int expected = 6;
+            var actual = ProductReviewManager.RetrieveRecordsBasedOnRatingAndProductId(products);
+            Assert.AreEqual(actual.Count, expected);
+        }
     }
 }

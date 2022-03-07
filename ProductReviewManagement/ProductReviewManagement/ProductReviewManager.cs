@@ -75,7 +75,7 @@ namespace ProductReviewManagement
             //    Console.WriteLine(productReview);
             //}
         }
-
+        // UC2--Retrieve Top Three Records Whose Rating is High
         public static int RetrieveTopThreeRating(List<ProductReview> products)
         {
             AddProductReviewToList(products);
@@ -83,6 +83,15 @@ namespace ProductReviewManagement
             var res = (from product in products orderby product.Rating descending select product).Take(3).ToList();
             IterateOverList(res);
             return res.Count;
+        }
+        //UC3- retrive records from list whos ratings greater than 3 and id is 1 or 9
+        public static List<ProductReview> RetrieveRecordsBasedOnRatingAndProductId(List<ProductReview> products)
+        {
+            AddProductReviewToList(products);            
+            var resProductList = (from product in products where (product.ProductId == 1 || product.ProductId == 4 || product.ProductId == 9) && product.Rating > 3 select product).ToList();
+            Console.WriteLine("\nPrinting Records Based On Rating And ProductId");
+            IterateOverList(resProductList);
+            return resProductList;
         }
     }
 }
