@@ -42,7 +42,7 @@ namespace ProductReviewManagement
                 products.Add(new ProductReview() { ProductId = 9, UserId = 5, Review = "Good", Rating = 4, IsLike = true });
                 products.Add(new ProductReview() { ProductId = 11, UserId = 6, Review = "Average", Rating = 3.5, IsLike = false });
                 
-                Console.WriteLine("Added The Products Review To The List Successfully !!!!!!");
+               // Console.WriteLine("Added The Products Review To The List Successfully !!!!!!");
             }
             catch (Exception ex)
             {
@@ -92,6 +92,22 @@ namespace ProductReviewManagement
             Console.WriteLine("\nPrinting Records Based On Rating And ProductId");
             IterateOverList(resProductList);
             return resProductList;
+        }
+
+        //UC4-Count for each productId
+        public static string CountingProductId(List<ProductReview> products)
+        {
+            string res = null;
+            AddProductReviewToList(products);
+            var data = products.GroupBy(x => x.ProductId).Select(a => new { ProductId = a.Key, count = a.Count() });
+            Console.WriteLine(data);
+            foreach (var element in data)
+            {
+                //Console.WriteLine("ProductId " + element.ProductId + " " + "Count " + " " + element.count);
+                res += element.ProductId + " " + element.count + " ";
+                Console.WriteLine(res);
+            }
+            return res;
         }
     }
 }
