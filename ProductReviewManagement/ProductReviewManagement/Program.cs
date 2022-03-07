@@ -17,7 +17,7 @@ namespace ProductReviewManagement
             {
                Console.WriteLine("1: Add Product Review To List \n2: Show All Product Review \n3:Retrieve top 3 records rating is high\n4:Retrieve records based on productId and ratings greater than 3" +
                    "\n 5.Count ProductId\n6.Retrieve only ProductId And Review\n7.Skip top 5 records And display remaining Records\n" +
-                   "8.Create Data Table\n9.Retrieve only islike field value is true\n10: Exit");
+                   "8.Create Data Table\n9.Retrieve only islike field value is true\n10Average Rating. \n11: Exit");
                Console.Write("Choose the option from above : ");
                int option=Convert.ToInt32(Console.ReadLine());
                 List<ProductReview> products = new List<ProductReview>();
@@ -57,9 +57,12 @@ namespace ProductReviewManagement
                         ProductReviewManager.CreateDataTable(products);
                         break;
                     case 9:
-                        ProductReviewManager.CreateDataTable(products);
+                        ProductReviewManager.ReturnsOnlyIsLikeFieldAsTrue(ProductReviewManager.CreateDataTable(products));
                         break;
                     case 10:
+                        ProductReviewManager.AverageOfRating();
+                        break;
+                    case 11:
                          flag = false;
                           break;
                    default:

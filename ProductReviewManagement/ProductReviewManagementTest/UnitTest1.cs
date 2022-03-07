@@ -2,37 +2,38 @@
 using ProductReviewManagement;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace ProductReviewManagementTest
 {
     [TestClass]
     public class UnitTest1
-    {        
-            List<ProductReview> products;
-            [TestInitialize]
-            public void SetUp()
-            {
-                products = new List<ProductReview>();
-            }
-           
-            // UC1-Adding a Productreview details in list and returns the count
-            
-            [TestMethod]
-            public void TestMethodForAddingDetailsInList()
-            {
-                int expected = 25;
-                int actual =ProductReviewManager.AddProductReviewToList(products).Count;
-                Assert.AreEqual(expected, actual);
-            }
-            /// UC2--Retrieve Top Three Records Whose Rating is High           
-            [TestMethod]
-            public void TestMethodForRetrieveTopThreeRecord()
-            {
-                int expected = 3;
+    {
+        List<ProductReview> products;
+        [TestInitialize]
+        public void SetUp()
+        {
+            products = new List<ProductReview>();
+        }
 
-                var actual = ProductReviewManager.RetrieveTopThreeRating(products);
-                Assert.AreEqual(expected, actual);
-            }
+        // UC1-Adding a Productreview details in list and returns the count
+
+        [TestMethod]
+        public void TestMethodForAddingDetailsInList()
+        {
+            int expected = 25;
+            int actual = ProductReviewManager.AddProductReviewToList(products).Count;
+            Assert.AreEqual(expected, actual);
+        }
+        /// UC2--Retrieve Top Three Records Whose Rating is High           
+        [TestMethod]
+        public void TestMethodForRetrieveTopThreeRecord()
+        {
+            int expected = 3;
+
+            var actual = ProductReviewManager.RetrieveTopThreeRating(products);
+            Assert.AreEqual(expected, actual);
+        }
         //UC3-retrieve all record whos rating greater than3 and id is 1 or 4 ,9
         [TestMethod]
         [TestCategory("Retrieving data whos id 1,4,9")]
@@ -45,10 +46,10 @@ namespace ProductReviewManagementTest
         //UC4-count each productId present in the list
         [TestMethod]
         public void TestMethodForCountingProductId()
-        {            
+        {
             string expected = "1 2 2 3 3 3 4 2 5 3 6 2 7 2 8 2 9 3 10 2 11 1 ";
             string actual = ProductReviewManager.CountingProductId(products);
-            Assert.AreEqual(expected,actual);   
+            Assert.AreEqual(expected, actual);
         }
         //Uc5-Retrieving ProductID and Review
         [TestMethod]
@@ -71,8 +72,16 @@ namespace ProductReviewManagementTest
         public void TestMethodForReturnsOnlyIsLikeFieldAsTrue()
         {
             int expected = 15;
-            int actual = ProductReviewManager.CreateDataTable(products);
+            var actual = ProductReviewManager.ReturnsOnlyIsLikeFieldAsTrue(ProductReviewManager.CreateDataTable(products));
             Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void TestMethodForAverageRating()
+        {
+            double expected = 3.76;
+            double actual = ProductReviewManager.AverageOfRating();
+            Assert.AreEqual(expected, actual);
+
         }
     }
 }

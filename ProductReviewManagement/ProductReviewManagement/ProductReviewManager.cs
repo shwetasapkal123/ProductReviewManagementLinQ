@@ -133,7 +133,7 @@ namespace ProductReviewManagement
             return res.Count;
         }
         // UC8-Using DataTable
-        public static int CreateDataTable(List<ProductReview> products)
+        public static DataTable CreateDataTable(List<ProductReview> products)
         {
             AddProductReviewToList(products);
             DataTable dt = new DataTable();
@@ -148,8 +148,8 @@ namespace ProductReviewManagement
                 dt.Rows.Add(data.ProductId, data.UserId, data.Rating, data.Review, data.IsLike);
             }
             //IterateTable(dt);
-            int c = ReturnsOnlyIsLikeFieldAsTrue(dt);
-            return c;
+            //int c = ReturnsOnlyIsLikeFieldAsTrue(dt);
+            return dt;
         }
         // Iterate Thorugh Table
         public static void IterateTable(DataTable table)
@@ -162,9 +162,6 @@ namespace ProductReviewManagement
         /// UC9-Returns Only IsLike Field As True        
         public static int ReturnsOnlyIsLikeFieldAsTrue(DataTable table)
         {
-            //List<ProductReview> products = new List<ProductReview>();
-            //AddingProductReview(products);
-            //CreateDataTable(products);
             int count = 0;
             var res = from t in table.AsEnumerable() where t.Field<bool>("isLike") == true select t;
             foreach (var p in res)
@@ -174,5 +171,15 @@ namespace ProductReviewManagement
             }
             return count;
         }
+        //// UC-10 Finding the average rating value
+        public static double AverageOfRating()
+        {
+            List<ProductReview> products = new List<ProductReview>();
+            DataTable table1 = CreateDataTable(products);
+            double result = (double)table1.Select().Where(p => p["rating"] != DBNull.Value).Select(c => Convert.ToDecimal(c["rating"])).Average();
+            Console.WriteLine(result);
+            return result;
+        }
+
     }
 }
