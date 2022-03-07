@@ -122,5 +122,14 @@ namespace ProductReviewManagement
             }
             return result;
         }
+        //UC6-Skipping top 5 records And displaying Remaining records
+        public static int SkipTopFiveRecords(List<ProductReview> products)
+        {
+            AddProductReviewToList(products);
+            Console.WriteLine("\nSkip Top Five records in list");
+            var res = (from product in products orderby product.Rating descending select product).Skip(5).ToList();
+            IterateOverList(res);
+            return res.Count;
+        }
     }
 }

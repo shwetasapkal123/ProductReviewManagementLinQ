@@ -16,7 +16,7 @@ namespace ProductReviewManagement
             try
             {
                Console.WriteLine("1: Add Product Review To List \n2: Show All Product Review \n3:Retrieve top 3 records rating is high\n4:Retrieve records based on productId and ratings greater than 3" +
-                   "\n 5.Count ProductId\n6.Retrieve only ProductId And Review\n7: Exit");
+                   "\n 5.Count ProductId\n6.Retrieve only ProductId And Review\n7.Skip top 5 records And display remaining Records\n8: Exit");
                Console.Write("Choose the option from above : ");
                int option=Convert.ToInt32(Console.ReadLine());
                 List<ProductReview> products = new List<ProductReview>();
@@ -46,10 +46,13 @@ namespace ProductReviewManagement
                         ProductReviewManager.CountingProductId(products);
                         break;
                     case 6:
-                        //
+                        //Calling method to Retrieving ProductID and Review
                         ProductReviewManager.RetrieveOnlyProductIdAndReviews(products);
                         break;
-                   case 7:
+                    case 7:
+                        ProductReviewManager.SkipTopFiveRecords(products);
+                        break;
+                   case 8:
                          flag = false;
                           break;
                    default:

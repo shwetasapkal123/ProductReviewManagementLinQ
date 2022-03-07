@@ -58,6 +58,13 @@ namespace ProductReviewManagementTest
             string actual = ProductReviewManager.RetrieveOnlyProductIdAndReviews(products);
             Assert.AreEqual(expected, actual);
         }
-
+        //UC6-Skipping top 5 records And displaying Remaining records
+        [TestMethod]
+        public void TestMethodSkipTopFiveRecords()
+        {
+            int expected = 20;
+            int actual = ProductReviewManager.SkipTopFiveRecords(products);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
