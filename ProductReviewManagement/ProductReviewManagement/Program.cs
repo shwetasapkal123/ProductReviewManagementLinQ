@@ -16,7 +16,7 @@ namespace ProductReviewManagement
             try
             {
                Console.WriteLine("1: Add Product Review To List \n2: Show All Product Review \n3:Retrieve top 3 records rating is high\n4:Retrieve records based on productId and ratings greater than 3" +
-                   "\n 5.Count ProductId\n6: Exit");
+                   "\n 5.Count ProductId\n6.Retrieve only ProductId And Review\n7: Exit");
                Console.Write("Choose the option from above : ");
                int option=Convert.ToInt32(Console.ReadLine());
                 List<ProductReview> products = new List<ProductReview>();
@@ -45,7 +45,11 @@ namespace ProductReviewManagement
                         //Calling method to count each productId present in the list
                         ProductReviewManager.CountingProductId(products);
                         break;
-                   case 6:
+                    case 6:
+                        //
+                        ProductReviewManager.RetrieveOnlyProductIdAndReviews(products);
+                        break;
+                   case 7:
                          flag = false;
                           break;
                    default:

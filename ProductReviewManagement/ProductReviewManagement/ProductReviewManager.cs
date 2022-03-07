@@ -109,5 +109,18 @@ namespace ProductReviewManagement
             }
             return res;
         }
+        //UC5-Retrieve Only Product Id And Reviews
+        public static string RetrieveOnlyProductIdAndReviews(List<ProductReview> products)
+        {
+            string result = null;
+            AddProductReviewToList(products);
+            var res = products.Select(product => new { ProductId = product.ProductId, Review = product.Review }).ToList();
+            foreach (var ele in res)
+            {
+                Console.WriteLine("ProductId " + ele.ProductId + " " + "Review " + " " + ele.Review);
+                result += ele.ProductId + " ";
+            }
+            return result;
+        }
     }
 }

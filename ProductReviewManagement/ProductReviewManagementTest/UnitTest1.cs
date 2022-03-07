@@ -50,5 +50,14 @@ namespace ProductReviewManagementTest
             string actual = ProductReviewManager.CountingProductId(products);
             Assert.AreEqual(expected,actual);   
         }
+        //Uc5-Retrieving ProductID and Review
+        [TestMethod]
+        public void TestMethodForProductId()
+        {
+            string expected = "1 2 3 4 5 6 7 8 9 10 1 3 2 4 6 8 9 5 10 2 3 5 7 9 11 ";
+            string actual = ProductReviewManager.RetrieveOnlyProductIdAndReviews(products);
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
