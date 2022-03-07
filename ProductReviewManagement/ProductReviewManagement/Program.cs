@@ -15,7 +15,7 @@ namespace ProductReviewManagement
             Console.WriteLine("WEL-COME to product review management program");
             try
             {
-               Console.WriteLine("1: Add Product Review To List \n2: Show All Product Review \n3: Exit");
+               Console.WriteLine("1: Add Product Review To List \n2: Show All Product Review \n3:Retrieve top 3 records rating is high\n4: Exit");
                Console.Write("Choose the option from above : ");
                int option=Convert.ToInt32(Console.ReadLine());
                 List<ProductReview> products = new List<ProductReview>();
@@ -32,7 +32,11 @@ namespace ProductReviewManagement
                         listOfProduct = ProductReviewManager.AddProductReviewToList(products);
                         ProductReviewManager.IterateOverList(listOfProduct);
                           break;
-                   case 3:
+                    case 3:
+                        //Calling method to retrieve top three records
+                        ProductReviewManager.RetrieveTopThreeRating(products);
+                        break ;
+                   case 4:
                          flag = false;
                           break;
                    default:
