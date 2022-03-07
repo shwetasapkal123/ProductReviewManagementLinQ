@@ -132,8 +132,8 @@ namespace ProductReviewManagement
             IterateOverList(res);
             return res.Count;
         }
-        // UC8-->Using DataTable
-        public static void CreateDataTable(List<ProductReview> products)
+        // UC8-Using DataTable
+        public static int CreateDataTable(List<ProductReview> products)
         {
             AddProductReviewToList(products);
             DataTable dt = new DataTable();
@@ -147,20 +147,32 @@ namespace ProductReviewManagement
             {
                 dt.Rows.Add(data.ProductId, data.UserId, data.Rating, data.Review, data.IsLike);
             }
-            IterateTable(dt);
-            //int c = ReturnsOnlyIsLikeFieldAsTrue(dt);
-            //return c;
+            //IterateTable(dt);
+            int c = ReturnsOnlyIsLikeFieldAsTrue(dt);
+            return c;
         }
-        /// <summary>
-        /// Iterate Thorugh Table
-        /// </summary>
-        /// <param name="table"></param>
+        // Iterate Thorugh Table
         public static void IterateTable(DataTable table)
         {
             foreach (DataRow p in table.Rows)
             {
                 Console.WriteLine("{0} | {1} | {2} | {3} | {4} ", p["productId"], p["userId"], p["rating"], p["review"], p["isLike"]);
             }
+        }
+        /// UC9-Returns Only IsLike Field As True        
+        public static int ReturnsOnlyIsLikeFieldAsTrue(DataTable table)
+        {
+            //List<ProductReview> products = new List<ProductReview>();
+            //AddingProductReview(products);
+            //CreateDataTable(products);
+            int count = 0;
+            var res = from t in table.AsEnumerable() where t.Field<bool>("isLike") == true select t;
+            foreach (var p in res)
+            {
+                Console.WriteLine("{0} | {1} | {2} | {3} | {4} ", p["productId"], p["userId"], p["rating"], p["review"], p["isLike"]);
+                count++;
+            }
+            return count;
         }
     }
 }
