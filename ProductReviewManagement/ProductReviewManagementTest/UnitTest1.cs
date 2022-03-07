@@ -75,13 +75,6 @@ namespace ProductReviewManagementTest
             var actual = ProductReviewManager.ReturnsOnlyIsLikeFieldAsTrue(ProductReviewManager.CreateDataTable(products));
             Assert.AreEqual(expected, actual);
         }
-        [TestMethod]
-        public void TestMethodForAverageRating()
-        {
-            double expected = 3.76;
-            double actual = ProductReviewManager.AverageOfRating();
-            Assert.AreEqual(expected, actual);
-
-        }
+       
     }
 }
