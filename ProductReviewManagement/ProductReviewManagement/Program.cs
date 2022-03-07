@@ -13,25 +13,23 @@ namespace ProductReviewManagement
         static void Main(string[] args)
         {
             Console.WriteLine("WEL-COME to product review management program");
-            //Creating object of product review
-            //List<ProductReview> products = new List<ProductReview>();
             try
             {
                Console.WriteLine("1: Add Product Review To List \n2: Show All Product Review \n3: Exit");
                Console.Write("Choose the option from above : ");
                int option=Convert.ToInt32(Console.ReadLine());
+                List<ProductReview> products = new List<ProductReview>();
                bool flag = true;
                switch (option)
                {
                  case 1:
-                       //Calling the method of adding product review to list(UC1)
-                       //products=ProductReviewManager.AddProductReviewToList();
-                       listOfProduct = ProductReviewManager.AddProductReviewToList();
+                       //Calling the method of adding product review to list(UC1)                      
+                       listOfProduct = ProductReviewManager.AddProductReviewToList(products);
                         //Console.WriteLine(listOfProduct);
                        break;
                   case 2:
                         //Calling the method to show the product review list(UC1)
-                        listOfProduct = ProductReviewManager.AddProductReviewToList();
+                        listOfProduct = ProductReviewManager.AddProductReviewToList(products);
                         ProductReviewManager.IterateOverList(listOfProduct);
                           break;
                    case 3:

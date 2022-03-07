@@ -9,9 +9,10 @@ namespace ProductReviewManagement
     public class ProductReviewManager
     {
         // UC1: Method to add the product review into the list
-        public static List<ProductReview> AddProductReviewToList()
+        public static List<ProductReview> AddProductReviewToList(List<ProductReview> products)
         {
-            List<ProductReview> products=new List<ProductReview>();
+            //creating object of list and add data to list
+           // List<ProductReview> products=new List<ProductReview>();
             try
             {
                 //Adding 25 entries to list
@@ -69,6 +70,19 @@ namespace ProductReviewManagement
             {
                 Console.WriteLine(ex.Message);
             }
+            //foreach (ProductReview productReview in products)
+            //{
+            //    Console.WriteLine(productReview);
+            //}
+        }
+
+        public static int RetrieveTopThreeRating(List<ProductReview> products)
+        {
+            AddProductReviewToList(products);
+            Console.WriteLine("\nRetrieving Top Three Records Based On Rating");
+            var res = (from product in products orderby product.Rating descending select product).Take(3).ToList();
+            IterateOverList(res);
+            return res.Count;
         }
     }
 }
