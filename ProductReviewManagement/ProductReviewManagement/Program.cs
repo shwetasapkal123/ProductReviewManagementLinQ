@@ -59,9 +59,9 @@ namespace ProductReviewManagement
                     case 9:
                         ProductReviewManager.ReturnsOnlyIsLikeFieldAsTrue(ProductReviewManager.CreateDataTable(products));
                         break;
-                    case 10:
-                        ProductReviewManager.AverageOfRating();
-                        break;
+                    //case 10:
+                    //    ProductReviewManager.AverageOfRating();
+                    //    break;
                     case 11:
                          flag = false;
                           break;
